@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}/">
+    <script src="{% static 'js/jquery-3.1.1.slim.min.js' %}/" charset="utf-8"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}/"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- Optional Themes -->
+    <link rel="stylesheet" href="{% static 'css/themes/beagle.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/beagle.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/default.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/default.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/flat.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/flat.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/mani.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/mani.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/roman.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/roman.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/tim.css'%}">
+    <link rel="stylesheet" href="{% static 'css/themes/tim.min.css'%}">
+
+
+    <!-- Medium Style Editor -->
+    <link rel="stylesheet" href="{% static 'medium-editor-5.23.3/dist/css/medium-editor.css' %}">
+    <link rel="stylesheet" href="{% static 'medium-editor-5.23.3/dist/css/medium-editor.min.css' %}">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}/">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+
+  </head>
+  <body class="load">
+
+    <!-- NAVBAR -->
+    <div class="pos-f-t">
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="bg-dark p-4">
+            <a class="bigbrand" href="{% url 'about'%}">About</a>
+            <a class="bigbrand" href="https://www.github.com">Github</a>
+            <a class="bigbrand" href="https://www.linkedin.com">Linkedin</a>
+            {% if user.is_authenticated %}
+              <a class="bigbrand" href="{% url 'post_new'%}">New Post</a>
+              <a class="bigbrand" href="{% url 'post_draft_list' %}">Drafts</a>
+              <a class="bigbrand" href="{% url 'logout' %}">Log Out</a>
+              <span class="text-muted bigbrand">Welcome: {{user.username}}</span>
+            {% else %}
+            <a class="bigbrand" href="{% url 'login'%}"><span class="glyphicon glyphicon-user" aria-hidden='true'>login</span></a>
+            {% endif%}
+          </div>
+        </div>
+        <nav class="navbar navbar-dark bg-dark techfont custom-navbar">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="navbar-brand bigbrand" href="{% url 'post_list'%}">My Blog</a>
+            </li>
+          </ul>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </nav>
+      </div>
+        <style media="screen">
+
+        body {
+          background: url({% static "img/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.jpg" %});
+          background-size: cover;
+        }
+
+        html, body{
+          height: 100%;
+          width: 100%;
+        }
+
+
+        </style>
+
+    <!-- CONTENT BLOCK -->
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="blog_posts">
+            {% block content %}
+
+            {% endblock %}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
